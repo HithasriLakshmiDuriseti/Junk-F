@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Home from './pages/Home';
+import Cart from './pages/Cart';
+import Coins from './pages/Coins';
+import Profile from './pages/Profile';
+import Products from './pages/Products';
+import WasteDetails from './pages/WasteDetails/WasteDetails';
+import MyWaste from './pages/MyWaste';
+import Login from './authentication/Login';
+import Signup from './authentication/Signup';
 
-function App() {
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './components/Sidebar.css';
+// import './pages/WasteDetails/WasteDetails.css'
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+        <Routes>
+            <Route path="/" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/coins" element={<Coins />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/products" element={<Products />} />
+            <Route path="/wastedetails/*" element={<WasteDetails />} />
+            <Route path="/mywaste" element={<MyWaste/>} />
+        </Routes>
+
+    </BrowserRouter>
+    
   );
-}
+};
 
 export default App;
