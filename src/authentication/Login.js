@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom'
 import Validation from'./LoginValidation';
 import axios from 'axios';
 import './Login.css';
 import './NavCSS.css'
+import { useAuth } from './AuthContext';
 
 function Login(){
     const [values, setValues]= useState({
@@ -11,29 +12,45 @@ function Login(){
         password: ''
     })
     const navigate = useNavigate();
-    const [errors, setErrors] = useState({})
+    const [errors, setErrors] = useState({});
+    const { login } = useAuth();
+
     const handleInput=(event)=>{
         setValues(prev=>({...prev, [event.target.name]: [event.target.value]}))
     }
+
     const handleSubmit = (event) =>{
         event.preventDefault();
         setErrors(Validation(values));
-    }
-    useEffect(()=> {
-        if(errors.email === "" && errors.password === ""){
+        if (errors.email === "" && errors.password === "") {
             axios
-            .post('http://localhost:8081/login', values)
-            .then(res => {
-                if(res.data === "Success"){
-                    navigate('/home');
+              .post('http://localhost:8081/login', values)
+              .then(res => {
+                if (res.data === "Success") {
+                  login({ email: values.email, name: values.email }); // Set user information on successful login
+                  navigate('/home');
+                } else {
+                  alert("No account existed with this details.\nClick on Create Account to create a new account.")
                 }
-                else{
-                    alert("No account existed with this details.\nClick on Create Account to create a new account.")
-                }
-            })
-            .catch(err => console.log(err));
-        }
-    });
+              })
+              .catch(err => console.log(err));
+          }
+    }
+    // useEffect(()=> {
+    //     if(errors.email === "" && errors.password === ""){
+    //         axios
+    //         .post('http://localhost:8081/login', values)
+    //         .then(res => {
+    //             if(res.data === "Success"){
+    //                 navigate('/home');
+    //             }
+    //             else{
+    //                 alert("No account existed with this details.\nClick on Create Account to create a new account.")
+    //             }
+    //         })
+    //         .catch(err => console.log(err));
+    //     }
+    // });
 
     return (
         <div>

@@ -92,7 +92,7 @@ const PlasticDetails = () => {
       <div className="mb-4">
         <label className="form-label mb-3" style={{fontWeight:'bold'}}>Weight:</label>
         <div className="input-group">
-          <button
+          <button 
             className="btn btn-outline-secondary"
             type="button"
             onClick={() => handleWeightChange(-1)}
@@ -110,7 +110,7 @@ const PlasticDetails = () => {
         </div>
       </div>
 
-      <button className="btn btn-primary" onClick={handleSaveAndNext}>
+      <button id="pp" className="btn btn-primary" onClick={handleSaveAndNext}>
         Save and Next
       </button>
     </div></div>

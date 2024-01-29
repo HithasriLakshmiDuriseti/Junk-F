@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import './Profile.css';
-import Sidebar from "../components/Sidebar";
+import { useAuth } from '../authentication/AuthContext';
 
 const Profile = () => {
+  const {user} = useAuth();
+  
   const [userDetails, setUserDetails] = useState({
     id: 1,
     username: '',
@@ -18,30 +20,34 @@ const Profile = () => {
 
   const [isEditingAddress, setIsEditingAddress] = useState(false);
 
-  useEffect(() => {
+
+ useEffect(() => {
+    // Define fetchUserDetails inside the useEffect callback
+    const fetchUserDetails = () => {
+      // Simulated API response
+      const mockUserDetails = {
+        id: 1,
+        username: user.name,
+        email: user.email,
+        address: {
+          street: '',
+          city: '',
+          state: '',
+          postalCode: '',
+          phoneNumber: '',
+        },
+      };
+
+      setUserDetails(mockUserDetails);
+    };
+
     // Fetch user details from an API or other data source
     // Simulating data fetching for demonstration purposes
     // Replace this with actual API calls in a real application
-    fetchUserDetails();
-  }, []);
-
-  const fetchUserDetails = () => {
-    // Simulated API response
-    const mockUserDetails = {
-      id: 1,
-      username: '',
-      email: '',
-      address: {
-        street: '',
-        city: '',
-        state: '',
-        postalCode: '',
-        phoneNumber: '',
-      },
-    };
-
-    setUserDetails(mockUserDetails);
-  };
+    if (user) {
+      fetchUserDetails();
+    }
+  }, [user]);
 
   const handleAddressChange = (field, value) => {
     setUserDetails((prevDetails) => ({
@@ -69,7 +75,6 @@ const Profile = () => {
   };
 
   return (
-    <Sidebar>
     <div className="profile-container">
       <div className="profile-header">
         <h2>User Profile</h2>
@@ -149,7 +154,6 @@ const Profile = () => {
 
       
     </div>
-    </Sidebar>
   );
 };
 

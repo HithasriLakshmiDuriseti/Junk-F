@@ -2,7 +2,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { FaCoins, FaSignOutAlt, FaStore, FaHome, FaUserAlt, FaShoppingBag, FaThList } from "react-icons/fa";
-// import WasteDetails from '../pages/WasteDetails/WasteDetails'; // Corrected import path
 
 const Sidebar = ({ children }) => {
   const menuItem = [
@@ -42,7 +41,7 @@ const Sidebar = ({ children }) => {
       icon: <FaCoins />
     },
     {
-      path: "/",
+      path: "/logout",
       name: "Logout",
       icon: <FaSignOutAlt />
     }
@@ -55,7 +54,7 @@ const Sidebar = ({ children }) => {
           <h1 className="logo">Hello...!</h1>
         </div>
         {menuItem.map((item, index) => (
-          <NavLink to={item.path} key={index} className="link" activeClassName="active">
+          <NavLink to={item.path} key={index} className="link" >
             <div className="icon">{item.icon}</div>
             <div className="link_text">{item.name}</div>
           </NavLink>

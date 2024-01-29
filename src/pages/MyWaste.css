@@ -1,0 +1,18 @@
+/* Add this to your existing CSS */
+.waste-card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-height: 100vh; /* Set a maximum height for the container */
+    overflow-y: auto; /* Enable vertical scrolling */
+  }
+  
+  .waste-card {
+    margin-left: 70px;
+    width: 80%;
+    margin-bottom: 20px;
+  }
+  
+  .waste-card .card-text {
+    color: green;
+  }

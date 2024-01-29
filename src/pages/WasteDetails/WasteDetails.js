@@ -7,9 +7,9 @@ import Clothes from './Clothes';
 import EWaste from './EWaste';
 import Wood from './Wood';
 import Placepickup from './Placepickup';
-import Sidebar from '../../components/Sidebar';
 import './WasteDetails.css';
 import {AppProvider} from '../../AppContext';
+import { ConfirmProvider } from '../../ConfirmContext';
 
 const WasteDetails = () => {
   const navigate = useNavigate();
@@ -24,12 +24,12 @@ const WasteDetails = () => {
     }
   };
   return (
-    <Sidebar>
     <AppProvider>
+      <ConfirmProvider>
     <div className="waste-details-container">
       <div className="header d-flex justify-content-between align-items-center">
         <h1>Waste Details</h1>
-        <button className="btn custom-light-green btn-lg"  ref={pickupRef} onClick={handlepickup}>Place Pickup</button>
+        <button className="btn custom-light-green btn-lg" id='pp'  ref={pickupRef} onClick={handlepickup}>Place Pickup</button>
       </div>
     <div className="waste-details-container">
       <div className="category-row">
@@ -71,8 +71,8 @@ const WasteDetails = () => {
       </Routes>
     </div>
     </div>
+    </ConfirmProvider>
     </AppProvider>
-    </Sidebar>
   );
 };
 

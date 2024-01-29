@@ -121,7 +121,7 @@ const Clothes = () => {
         </div>
       </div>
 
-      <button className="btn btn-primary" onClick={handleSaveAndNext}>
+      <button id="pp" className="btn btn-primary" onClick={handleSaveAndNext}>
         Save and Next
       </button>
     </div></div>
